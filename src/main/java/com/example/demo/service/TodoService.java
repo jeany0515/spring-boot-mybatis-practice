@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.mapper.TodoMapper;
 import com.example.demo.model.Todo;
 import com.example.demo.repository.TodoRepository;
 import org.springframework.stereotype.Service;
@@ -8,22 +9,22 @@ import java.util.List;
 
 @Service
 public class TodoService {
-    private final TodoRepository todoRepository;
+    private TodoMapper todoMapper;
 
-    public TodoService(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
+    public TodoService(TodoMapper todoMapper) {
+        this.todoMapper = todoMapper;
     }
 
     public List<Todo> getAll() {
-        return todoRepository.findAll();
+        return todoMapper.findAll();
     }
 
-    public Todo create(Todo todo) {
-        return todoRepository.add(todo);
+    public void create(Todo todo) {
+        todoMapper.add(todo);
     }
 
     public Todo update(Integer todoId, Todo todoUpdate) {
-        Todo todo = todoRepository.findById(todoId);
+        Todo todo = todoMapper.findById(todoId);
         if (todoUpdate.getText() != null) {
             todo.setText(todoUpdate.getText());
         }

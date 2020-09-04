@@ -23,8 +23,8 @@ public class TodoController {
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Todo create(@RequestBody Todo todo) {
-        return todoService.create(todo);
+    public void create(@RequestBody Todo todo) {
+        todoService.create(todo);
     }
 
     @PutMapping("/{todoId}")
